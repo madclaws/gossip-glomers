@@ -1,0 +1,6 @@
+ExUnit.start()
+ExUnit.configure(exclude: :skip)
+Mox.defmock(ExMaelstrom.MoxIoInteractor, for: ExMaelstrom.Utils.IoApi)
+Application.put_env(:ex_maelstrom, :Io, ExMaelstrom.MoxIoInteractor)
+Mox.defmock(ExMaelstrom.MoxAsyncInteractor, for: ExMaelstrom.Utils.AsyncApi)
+Application.put_env(:ex_maelstrom, :async, ExMaelstrom.MoxAsyncInteractor)
