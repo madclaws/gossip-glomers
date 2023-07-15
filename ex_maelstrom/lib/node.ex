@@ -220,7 +220,7 @@ defmodule ExMaelstrom.Node do
                body: body_json
              )
            ) do
-      Logger.warn("Sent #{reply_json}")
+      Logger.warning("Sent #{reply_json}")
       IoApi.puts(reply_json)
       :ok
     end
@@ -243,7 +243,7 @@ defmodule ExMaelstrom.Node do
         reply(msg, err, node)
 
       {:error, err} ->
-        Logger.warn("Exception handling #{inspect(msg)}:#{inspect(err)}")
+        Logger.warning("Exception handling #{inspect(msg)}:#{inspect(err)}")
         # 13 is error code for rpc crash
         reply(msg, RpcError.new_rpc_error(13, inspect(err)), node)
 
@@ -266,7 +266,7 @@ defmodule ExMaelstrom.Node do
         ) ::
           {:ok, Node.t()} | {:error, term()}
   defp manage_handlers(body, msg, line, node) do
-    Logger.warn("Received #{inspect(msg)}")
+    Logger.warning("Received #{inspect(msg)}")
 
     # if the message has in_reply_to, then basically its a reply to msg which already has a handler
     if body.in_reply_to != 0 do
